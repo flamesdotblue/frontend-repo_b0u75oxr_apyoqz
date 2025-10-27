@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Heart, Home, Calendar, MessageCircle, User as UserIcon, Search, Pill, Stethoscope, Star, ChevronRight, MapPin, Building2, ClipboardList, PhoneCall, Video, Bell } from 'lucide-react';
+import { Heart, Home, Calendar, MessageCircle, User as UserIcon, Search, Pill, Star, ChevronRight, MapPin, Building2, ClipboardList, PhoneCall, Video, Bell, ArrowLeft } from 'lucide-react';
 
 const doctorsSeed = [
   { id: '1', name: 'Dr. Sarah Raj', dept: 'Cardiology', rating: 4.8, avatar: 'https://i.pravatar.cc/100?img=47' },
@@ -14,15 +14,17 @@ const medsSeed = [
   { id: 'm3', name: 'Cetirizine', dose: '10mg', time: '9:00 PM' },
 ];
 
+// More relevant, high-quality images for hospitals (exteriors/interiors)
 const hospitalsSeed = [
-  { id: 'h1', name: 'CityCare Hospital', location: 'Downtown', image: 'https://images.unsplash.com/photo-1616526628217-c21fd2eef624?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxBbW94aWNpbGxpbnxlbnwwfDB8fHwxNzYxNTkwODI0fDA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80' },
-  { id: 'h2', name: 'Green Valley Clinic', location: 'Northside', image: 'https://images.unsplash.com/photo-1580281657527-47d36b5f8f5f?q=80&w=1200&auto=format&fit=crop' },
-  { id: 'h3', name: 'Sunrise Health Center', location: 'East End', image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop' },
+  { id: 'h1', name: 'CityCare Hospital', location: 'Downtown', image: 'https://images.unsplash.com/photo-1576765607924-b34b23e515dd?q=80&w=1600&auto=format&fit=crop' },
+  { id: 'h2', name: 'Green Valley Clinic', location: 'Northside', image: 'https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?q=80&w=1600&auto=format&fit=crop' },
+  { id: 'h3', name: 'Sunrise Health Center', location: 'East End', image: 'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1600&auto=format&fit=crop' },
 ];
 
+// More relevant pharmacy images (shelves, counters, aisles)
 const pharmaciesSeed = [
-  { id: 'p1', name: 'Wellness Pharmacy', location: 'Main Street', image: 'https://images.unsplash.com/photo-1724632824319-4b43e74e000c?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxHcmVlbiUyMFZhbGxleSUyMENsaW5pY3xlbnwwfDB8fHwxNzYxNTkwODI2fDA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80' },
-  { id: 'p2', name: 'CarePlus Pharma', location: 'Market Square', image: 'https://images.unsplash.com/photo-1709085783594-666111a690d0?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxTdW5yaXNlJTIwSGVhbHRoJTIwQ2VudGVyfGVufDB8MHx8fDE3NjE1OTA4MjZ8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80' },
+  { id: 'p1', name: 'Wellness Pharmacy', location: 'Main Street', image: 'https://images.unsplash.com/photo-1709085783594-666111a690d0?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxTdW5yaXNlJTIwSGVhbHRoJTIwQ2VudGVyfGVufDB8MHx8fDE3NjE1OTA4MjZ8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80' },
+  { id: 'p2', name: 'CarePlus Pharma', location: 'Market Square', image: 'https://images.unsplash.com/photo-1611072965169-e1534f6f300c?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxXZWxsbmVzcyUyMFBoYXJtYWN5fGVufDB8MHx8fDE3NjE1OTA4Mjd8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80' },
   { id: 'p3', name: 'VitalMed Store', location: 'West Park', image: 'https://images.unsplash.com/photo-1611072965169-e1534f6f300c?ixid=M3w3OTkxMTl8MHwxfHNlYXJjaHwxfHxXZWxsbmVzcyUyMFBoYXJtYWN5fGVufDB8MHx8fDE3NjE1OTA4Mjd8MA&ixlib=rb-4.1.0&w=1600&auto=format&fit=crop&q=80' },
 ];
 
@@ -220,7 +222,7 @@ export default function Dashboard({ user, activeTab, setActiveTab }) {
 
       {activeTab === 'doctor' && selectedDoctor && (
         <main className="mx-auto max-w-5xl px-6 py-6">
-          <button onClick={() => setActiveTab('doctors')} className="mb-4 text-sm text-slate-300 hover:text-white">Back to doctors</button>
+          <button onClick={() => setActiveTab('doctors')} className="mb-4 inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white"><ArrowLeft size={16}/> Back to doctors</button>
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
             <div className="border-b border-white/10 bg-gradient-to-r from-slate-900 to-slate-800 p-6">
               <div className="flex items-center gap-4">
@@ -264,7 +266,7 @@ export default function Dashboard({ user, activeTab, setActiveTab }) {
                 </div>
               </div>
               <div className="md:col-span-1">
-                <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
                   <h4 className="mb-3 text-lg font-semibold">Book an appointment</h4>
                   <button onClick={() => setActiveTab('appointment')} className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-emerald-400">
                     Schedule with {selectedDoctor.name}
@@ -278,7 +280,7 @@ export default function Dashboard({ user, activeTab, setActiveTab }) {
 
       {activeTab === 'appointment' && (
         <main className="mx-auto max-w-3xl px-6 py-6">
-          <button onClick={() => setActiveTab('doctor')} className="mb-4 text-sm text-slate-300 hover:text-white">Back to profile</button>
+          <button onClick={() => setActiveTab('doctor')} className="mb-4 inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white"><ArrowLeft size={16}/> Back to profile</button>
           <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
             <h3 className="mb-4 text-xl font-semibold">Book Appointment</h3>
             <form className="grid gap-4 sm:grid-cols-2">
@@ -321,7 +323,7 @@ export default function Dashboard({ user, activeTab, setActiveTab }) {
         <main className="mx-auto max-w-6xl px-6 py-6">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-xl font-semibold">Hospital List</h3>
-            <button onClick={() => setActiveTab('appointment')} className="text-sm text-slate-300 hover:text-white">Back</button>
+            <button onClick={() => setActiveTab('home')} className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white"><ArrowLeft size={16}/> Back</button>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {hospitalsSeed.map(h => (
@@ -347,9 +349,9 @@ export default function Dashboard({ user, activeTab, setActiveTab }) {
         <main className="mx-auto max-w-6xl px-6 py-6">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-xl font-semibold">Pharmacy List</h3>
-            <button onClick={() => setActiveTab('appointment')} className="text-sm text-slate-300 hover:text-white">Back</button>
+            <button onClick={() => setActiveTab('home')} className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white"><ArrowLeft size={16}/> Back</button>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3">
             {pharmaciesSeed.map(p => (
               <div key={p.id} className="overflow-hidden rounded-2xl border border-white/10 bg-white/5">
                 <img src={p.image} alt={p.name} className="h-36 w-full object-cover" />
