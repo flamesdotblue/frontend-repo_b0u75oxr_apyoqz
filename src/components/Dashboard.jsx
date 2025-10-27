@@ -86,6 +86,51 @@ export default function Dashboard({ user, activeTab, setActiveTab }) {
 
           <section className="mb-8">
             <div className="mb-3 flex items-center justify-between">
+              <h4 className="text-lg font-semibold">Quick Access</h4>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <button onClick={() => setActiveTab('hospitals')} className="group overflow-hidden rounded-2xl border border-emerald-400/20 bg-gradient-to-br from-emerald-400/15 to-emerald-500/10 p-5 text-left transition hover:border-emerald-400/40">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-emerald-500 text-slate-900">
+                    <Building2 size={22} />
+                  </div>
+                  <div>
+                    <p className="text-base font-semibold text-white">Hospitals Nearby</p>
+                    <p className="text-sm text-emerald-200/90">Find trusted clinics and hospitals</p>
+                  </div>
+                </div>
+                <div className="mt-4 grid grid-cols-3 gap-2 text-xs text-emerald-200/80">
+                  {hospitalsSeed.slice(0,3).map(h=> (
+                    <div key={h.id} className="overflow-hidden rounded-lg border border-white/10">
+                      <img src={h.image} alt={h.name} className="h-16 w-full object-cover" />
+                    </div>
+                  ))}
+                </div>
+              </button>
+
+              <button onClick={() => setActiveTab('pharmacies')} className="group overflow-hidden rounded-2xl border border-sky-400/20 bg-gradient-to-br from-sky-400/15 to-sky-500/10 p-5 text-left transition hover:border-sky-400/40">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-sky-500 text-slate-900">
+                    <Pill size={22} />
+                  </div>
+                  <div>
+                    <p className="text-base font-semibold text-white">Pharmacies</p>
+                    <p className="text-sm text-sky-200/90">Popular and nearby medicine stores</p>
+                  </div>
+                </div>
+                <div className="mt-4 grid grid-cols-3 gap-2 text-xs text-sky-200/80">
+                  {pharmaciesSeed.slice(0,3).map(p=> (
+                    <div key={p.id} className="overflow-hidden rounded-lg border border-white/10">
+                      <img src={p.image} alt={p.name} className="h-16 w-full object-cover" />
+                    </div>
+                  ))}
+                </div>
+              </button>
+            </div>
+          </section>
+
+          <section className="mb-8">
+            <div className="mb-3 flex items-center justify-between">
               <h4 className="text-lg font-semibold">Checklist Today</h4>
               <a className="text-sm text-emerald-300 hover:text-emerald-200" href="#checklist">View all</a>
             </div>
