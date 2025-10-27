@@ -1,28 +1,45 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import HeroLanding from './components/HeroLanding.jsx';
+import AuthPages from './components/AuthPages.jsx';
+import Dashboard from './components/Dashboard.jsx';
+import FooterNav from './components/FooterNav.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [route, setRoute] = useState('landing'); // 'landing' | 'auth' | 'dashboard'
+  const [user, setUser] = useState(null); // { name, email }
+  const [activeTab, setActiveTab] = useState('home'); // for footer nav within dashboard
+
+  const handleStart = () => setRoute('auth');
+
+  const handleAuthSuccess = (userData) => {
+    setUser(userData);
+    setRoute('dashboard');
+  };
+
+  const handleSignOut = () => {
+    setUser(null);
+    setRoute('landing');
+    setActiveTab('home');
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      {route === 'landing' && (
+        <HeroLanding onGetStarted={handleStart} />
+      )}
+
+      {route === 'auth' && (
+        <AuthPages onAuthSuccess={handleAuthSuccess} onBack={() => setRoute('landing')} />)
+      }
+
+      {route === 'dashboard' && (
+        <div className="flex min-h-screen flex-col">
+          <Dashboard user={user} activeTab={activeTab} setActiveTab={setActiveTab} />
+          <FooterNav activeTab={activeTab} onChange={setActiveTab} onSignOut={handleSignOut} />
         </div>
-      </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
